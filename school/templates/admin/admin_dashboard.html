@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #6366f1;
+            --bg: #f3f4f6;
+            --text: #1f2937;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: linear-gradient(135deg, #c7d2fe, #e0e7ff);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.25);
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            padding: 2rem 1rem 1rem 1rem;
+            transition: width 0.3s ease;
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar h2 {
+            color: var(--primary);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-links li {
+            margin: 1rem 0;
+        }
+
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background-clip: padding-box;
+            -webkit-background-clip: padding-box;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            transform: translateX(6px);
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .nav-links i {
+            font-size: 1.3rem;
+        }
+
+        /* Logout */
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .logout-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 2rem;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+            }
+
+            .sidebar h2,
+            .nav-links a span {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 70px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div>
+            <h2>Admin</h2>
+            <ul class="nav-links">
+                <li><a href="#"><i class="ri-user-add-line"></i><span>Add Student</span></a></li>
+                <li><a href="#"><i class="ri-user-shared-line"></i><span>Delete Student</span></a></li>
+                <li><a href="#"><i class="ri-user-star-line"></i><span>Add Staff</span></a></li>
+                <li><a href="#"><i class="ri-user-unfollow-line"></i><span>Delete Staff</span></a></li>
+                <li><a href="#"><i class="ri-bar-chart-box-line"></i><span>Performance</span></a></li>
+                <li><a href="#"><i class="ri-wallet-3-line"></i><span>Expenses Tracker</span></a></li>
+                <li><a href="#"><i class="ri-archive-drawer-line"></i><span>Expenses Register</span></a></li>
+            </ul>
+        </div>
+
+        <a href="{% url 'logout' %}" class="logout-btn">
+            <i class="ri-logout-box-line"></i>
+            <span>Logout</span>
+        </a>
+    </aside>
+
+    <main class="main-content">
+        <h1>Welcome, Admin 👋</h1>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Students</h3>
+                <p>Manage student records and update performance.</p>
+            </div>
+            <div class="card">
+                <h3>Staff</h3>
+                <p>Assign roles, manage attendance, and staff details.</p>
+            </div>
+            <div class="card">
+                <h3>Expenses</h3>
+                <p>Track and record all institute-related expenses easily.</p>
+            </div>
+            <div class="card">
+                <h3>Performance</h3>
+                <p>Check and analyze student and staff performance stats.</p>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

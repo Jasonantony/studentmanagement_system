@@ -1,0 +1,87 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #004d00, #00b33c);
+    margin: 0;
+    color: white;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    animation: floatNav 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatNav {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(10px);
+    }
+}
+
+.dashboard {
+    padding: 40px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.card {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.card.green {
+    background: rgba(0, 255, 127, 0.2);
+}
+
+.chart-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.table-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}

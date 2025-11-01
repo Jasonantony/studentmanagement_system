@@ -1,0 +1,218 @@
+{% extends 'students/base.html' %}
+{% load static %}
+{% block content %}
+<!-- Registration wrapper ensures footer flows below content -->
+<div class="registration-wrapper">
+    <div class="registration-card">
+        <h2 class="form-title">Create your student account</h2>
+
+        <!-- note: enctype is required for file uploads -->
+        <form method="POST" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col">
+                    <label>First Name</label>
+                    <input type="text" name="name" placeholder="Enter first name" required>
+                </div>
+                <div class="col">
+                    <label>Last Name</label>
+                    <input type="text" name="last_name" placeholder="Enter last name">
+                </div>
+            </div>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+
+            <label>Mobile No</label>
+            <input type="text" name="mobile" placeholder="Enter mobile number" required>
+
+            <label>Class</label>
+            <select name="class_name" required>
+                <option value="" disabled selected>Select class</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+                <option value="VI">VI</option>
+                <option value="VII">VII</option>
+                <option value="VIII">VIII</option>
+                <option value="IX">IX</option>
+                <option value="X">X</option>
+            </select>
+
+            <label>Student ID</label>
+            <input type="text" name="student_id" placeholder="Enter your ID" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Create a password" required>
+
+            <label>Profile Picture (optional)</label>
+            <input type="file" name="profile_pic" accept="image/*">
+
+            <button type="submit" class="btn-submit">Sign Up</button>
+        </form>
+
+        <p class="login-text">
+            Already registered? <a href="{% url 'login' %}">Login here</a>
+        </p>
+    </div>
+</div>
+
+<style>
+    /* --- layout basics --- */
+    :root {
+        --accent1: #00b4d8;
+        --accent2: #0077b6;
+        --bg1: #021428;
+        --bg2: #072033;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    /* ensures the card is centered and footer flows below */
+    .registration-wrapper {
+        min-height: calc(100vh - 120px);
+        /* leaves room for footer */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px 40px;
+        background: radial-gradient(circle at 10% 20%, #04243b 0%, transparent 20%),
+            radial-gradient(circle at 90% 80%, #013048 0%, transparent 20%),
+            linear-gradient(180deg, var(--bg1), var(--bg2));
+        color: #e6f0f6;
+    }
+
+    /* glass card */
+    .registration-card {
+        width: 100%;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(8px) saturate(120%);
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 12px 40px rgba(2, 6, 23, 0.7), 0 2px 6px rgba(0, 0, 0, 0.6);
+        animation: lift 0.8s cubic-bezier(.2, .9, .3, 1);
+    }
+
+    /* inputs */
+    .registration-card label {
+        display: block;
+        margin: 12px 0 6px;
+        font-weight: 600;
+        color: rgba(230, 240, 255, 0.9);
+    }
+
+    .registration-card .row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .registration-card .col {
+        flex: 1;
+    }
+
+    .registration-card input[type="text"],
+    .registration-card input[type="email"],
+    .registration-card input[type="password"],
+    .registration-card input[type="file"],
+    .registration-card select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(2, 9, 16, 0.35);
+        color: #e6f0f6;
+        outline: none;
+        transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+
+    .registration-card input:focus,
+    .registration-card select:focus {
+        box-shadow: 0 6px 20px rgba(0, 180, 216, 0.12);
+        border-color: rgba(0, 180, 216, 0.5);
+        transform: translateY(-1px);
+    }
+
+    /* button */
+    .btn-submit {
+        margin-top: 16px;
+        width: 100%;
+        padding: 12px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        color: white;
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        box-shadow: 0 8px 30px rgba(0, 180, 216, 0.18);
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn-submit:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px rgba(0, 180, 216, 0.24);
+    }
+
+    /* small text */
+    .login-text {
+        text-align: center;
+        margin-top: 14px;
+        color: #bcd7e6;
+    }
+
+    .login-text a {
+        color: var(--accent1);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    /* footer flows naturally and matches theme */
+    .site-footer {
+        width: 100%;
+        text-align: center;
+        color: rgba(230, 240, 255, 0.9);
+        padding: 18px 10px;
+        font-size: 0.95rem;
+        background: linear-gradient(180deg, rgba(0, 20, 30, 0.25), rgba(0, 10, 20, 0.18));
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+        position: relative;
+        /* not fixed */
+        margin-top: 20px;
+    }
+
+    .site-footer a {
+        color: var(--accent1);
+        text-decoration: none;
+    }
+
+    /* small screens */
+    @media (max-width:520px) {
+        .registration-card {
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .registration-card .row {
+            flex-direction: column;
+        }
+    }
+
+    @keyframes lift {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>
+{% endblock %}

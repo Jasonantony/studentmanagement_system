@@ -1,0 +1,221 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block head %}
+<style>
+    body {
+        background-color: #f4f6f9;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .dashboard-wrapper {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        background: linear-gradient(180deg, #007bff, #0056b3);
+        color: #fff;
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .sidebar h2 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-weight: 500;
+        transition: background 0.3s ease;
+    }
+
+    .sidebar a:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Main content */
+    .main-content {
+        padding: 30px;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .topbar h3 {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .profile-section {
+        background: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+        text-align: center;
+    }
+
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid #007bff;
+    }
+
+    .progress-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+        margin-top: 20px;
+    }
+
+    .progress-bar {
+        height: 20px;
+        border-radius: 10px;
+        background-color: #e9ecef;
+        overflow: hidden;
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        background-color: #007bff;
+
+        width: {
+                {
+                student.completion_percentage|default: 60
+            }
+        }
+
+        %;
+        transition: width 0.5s ease;
+        border-radius: 10px;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .info-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .info-card h5 {
+        color: #007bff;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .btn-save {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: background 0.3s;
+    }
+
+    .btn-save:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div>
+            <h2>🎓 MySchool</h2>
+            <a href="#"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="#"><i class="fa-solid fa-book-open"></i> My Lessons</a>
+            <a href="#"><i class="fa-solid fa-file-alt"></i> Assignments</a>
+            <a href="#"><i class="fa-solid fa-chart-bar"></i> Grades</a>
+            <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+        </div>
+        <a href="{% url 'logout' %}" style="background: rgba(255,255,255,0.2); text-align:center;">Logout</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="topbar">
+            <h3>Welcome back, {{ student.name }} 👋</h3>
+            <span class="text-muted">{{ student.class_name }}</span>
+        </div>
+
+        <div class="profile-section">
+            {% if student.profile_pic %}
+            <img src="{{ student.profile_pic.url }}" alt="Profile Picture" class="profile-pic mb-3">
+            {% else %}
+            <img src="{% static 'images/default_profile.png' %}" alt="Default Profile" class="profile-pic mb-3">
+            {% endif %}
+            <h4>{{ student.name }}</h4>
+            <p class="text-muted">Student ID: {{ student.student_id }}</p>
+            <p>Email: {{ student.email }} | Mobile: {{ student.mobile }}</p>
+        </div>
+
+        <div class="progress-card mt-4">
+            <h5>📘 Learning Progress</h5>
+            <div class="progress-bar mt-2">
+                <div class="progress-bar-fill"></div>
+            </div>
+            <p class="mt-2">{{ student.completion_percentage|default:"60" }}% completed</p>
+        </div>
+
+        <div class="card-grid">
+            <div class="info-card">
+                <h5>📚 Current Subjects</h5>
+                <ul>
+                    <li>Mathematics</li>
+                    <li>Computer Science</li>
+                    <li>English</li>
+                    <li>Physics</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h5>📊 Performance</h5>
+                <p>Average Score: <strong>82%</strong></p>
+                <p>Attendance: <strong>93%</strong></p>
+            </div>
+
+            <div class="info-card">
+                <h5>⚙️ Update Profile</h5>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FontAwesome icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+{% endblock %}

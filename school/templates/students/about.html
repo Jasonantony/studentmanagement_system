@@ -1,0 +1,170 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block head %}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+    body {
+        background-color: #f8fafc;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, #198754, #1E3A8A);
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+    }
+
+    .hero-section h1 {
+        font-weight: 700;
+    }
+
+    .about-card {
+        border: none;
+        border-radius: 15px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .about-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+        color: #198754;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" data-aos="fade-up">
+    <div class="container">
+        <h1>Welcome to Jace Schools</h1>
+        <p class="lead mt-3">Inspiring curiosity, creativity, and confidence in every learner.</p>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6" data-aos="fade-right">
+                <h2 class="section-title">Our Story</h2>
+                <p class="text-muted">
+                    Established with a vision to nurture young minds, <strong>Jace Schools</strong> stands as a beacon
+                    of learning,
+                    discipline, and innovation. Our mission is to cultivate excellence through holistic education that
+                    balances
+                    academics, creativity, and moral values.
+                </p>
+                <p class="text-muted">
+                    Every child at Jace Schools is encouraged to explore, question, and grow — shaping them into
+                    confident
+                    individuals ready for tomorrow’s challenges.
+                </p>
+            </div>
+            <div class="col-md-6 text-center" data-aos="fade-left">
+                <img src="{% static 'images/school.jpeg' %}" alt="Jace School Building"
+                    class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Values Section -->
+<section class="bg-light py-5">
+    <div class="container text-center">
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="card about-card p-4">
+                    <img src="{% static 'images/learning.jpg' %}" class="rounded mb-3" alt="Learning">
+                    <h5 class="fw-bold text-primary">Lifelong Learning</h5>
+                    <p class="text-muted">We inspire curiosity and critical thinking through every lesson we teach.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="card about-card p-4">
+                    <img src="{% static 'images/innovation.jpg' %}" class="rounded mb-3" alt="Innovation">
+                    <h5 class="fw-bold text-primary">Innovation</h5>
+                    <p class="text-muted">Empowering students to create meaningful change with creativity and courage.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="card about-card p-4">
+                    <img src="{% static 'images/teamwork.jpg' %}" class="rounded mb-3" alt="Teamwork">
+                    <h5 class="fw-bold text-primary">Teamwork</h5>
+                    <p class="text-muted">We believe in collaboration, compassion, and shared growth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vision Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 order-md-2" data-aos="fade-left">
+                <h2 class="section-title">Our Vision</h2>
+                <p class="text-muted">
+                    To be a center of excellence that empowers students to think critically, act responsibly, and
+                    contribute
+                    positively to society. At Jace Schools, learning is not limited to classrooms — it’s a journey of
+                    discovery.
+                </p>
+            </div>
+            <div class="col-md-6 order-md-1 text-center" data-aos="fade-right">
+                <img src="{% static 'images/vision.jpeg' %}" alt="Students" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Meet Our Teachers Section -->
+<section class="bg-light py-5 text-center">
+    <div class="container">
+        <h2 class="section-title">Meet Our Teachers</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="flip-left">
+                <div class="card border-0 shadow-lg p-3">
+                    <img src="{% static 'images/teacher1.jpg' %}" class="rounded-circle mx-auto" width="120"
+                        height="120" alt="Teacher">
+                    <h5 class="mt-3 text-primary">Jason Antony M</h5>
+                    <p class="text-muted">Principal</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-left" data-aos-delay="100">
+                <div class="card border-0 shadow-lg p-3">
+                    <img src="{% static 'images/femaleteacher.jpeg' %}" class="rounded-circle mx-auto" width="120"
+                        height="120" alt="Teacher">
+                    <h5 class="mt-3 text-primary">Anushya</h5>
+                    <p class="text-muted">Computer Science Faculty</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="flip-left" data-aos-delay="200">
+                <div class="card border-0 shadow-lg p-3">
+                    <img src="{% static 'images/female2.jpg' %}" class="rounded-circle mx-auto" width="120" height="120"
+                        alt="Teacher">
+                    <h5 class="mt-3 text-primary">Ms. Divya Nair</h5>
+                    <p class="text-muted">Mathematics Faculty</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-primary text-white text-center py-4 mt-5">
+    <p class="mb-0">&copy; 2025 Jace Schools | Empowering Minds. Building Futures.</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000 });
+</script>
+{% endblock %}

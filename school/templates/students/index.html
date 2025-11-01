@@ -1,0 +1,200 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block head %}
+<style>
+    body {
+        background: #f8f9fa;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* Hero Section */
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
+            url('https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1950&q=80') center/cover;
+        color: #fff;
+        text-align: center;
+        padding: 120px 20px;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        margin-top: 10px;
+    }
+
+    .hero .btn {
+        margin-top: 25px;
+        padding: 12px 35px;
+        font-size: 18px;
+        border-radius: 30px;
+        transition: 0.3s;
+    }
+
+    .hero .btn:hover {
+        transform: scale(1.05);
+        background: #198754;
+        color: #fff;
+    }
+
+    /* Highlights Section */
+    .highlights {
+        margin: 60px 0;
+        text-align: center;
+    }
+
+    .highlights h2 {
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: #198754;
+    }
+
+    .highlight-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        padding: 30px 20px;
+    }
+
+    .highlight-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .highlight-card i {
+        font-size: 45px;
+        color: #198754;
+        margin-bottom: 15px;
+    }
+
+    /* Mission Section */
+    .mission {
+        background: #198754;
+        color: #fff;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .mission h2 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .mission p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Carousel */
+    .carousel-inner img {
+        height: 450px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Footer */
+    footer {
+        background: #212529;
+        color: #fff;
+        text-align: center;
+        padding: 25px 0;
+        margin-top: 60px;
+    }
+
+    footer a {
+        color: #198754;
+        text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Welcome to Jace School</h1>
+    <p>Empowering Young Minds for a Bright Future</p>
+    <a href="{% url 'register' %}" class="btn btn-light">Register Now</a>
+    <a href="{% url 'about' %}" class="btn btn-outline-light">Learn More</a>
+</section>
+
+<!-- Highlights -->
+<section class="highlights container">
+    <h2>Why Choose Jace School?</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="highlight-card">
+                <i class="bi bi-mortarboard-fill"></i>
+                <h5>Expert Faculty</h5>
+                <p>Our teachers bring innovation, experience, and care to every lesson, ensuring every student thrives.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="highlight-card">
+                <i class="bi bi-laptop-fill"></i>
+                <h5>Smart Classrooms</h5>
+                <p>Modern classrooms equipped with smart boards and digital learning tools for interactive education.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="highlight-card">
+                <i class="bi bi-trophy-fill"></i>
+                <h5>Sports & Arts</h5>
+                <p>Encouraging creativity and physical fitness through music, dance, drama, and sports activities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="mission">
+    <h2>Our Mission & Vision</h2>
+    <p>At Jace School, we aim to nurture young minds through holistic education that combines academic excellence,
+        creativity, and moral values — empowering our students to become leaders of tomorrow.</p>
+</section>
+
+<!-- Gallery Carousel -->
+<div id="schoolCarousel" class="carousel slide container my-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?auto=format&fit=crop&w=1950&q=80"
+                class="d-block w-100" alt="Campus">
+        </div>
+        <div class="carousel-item">
+            <img src="{%static 'images/vision.jpeg'%}" class="d-block w-100" alt="Classroom">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/classroom.jpg'%}" class="d-block w-100" alt="Library">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#schoolCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#schoolCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- Footer -->
+
+{% endblock %}
